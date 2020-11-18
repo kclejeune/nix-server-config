@@ -20,7 +20,7 @@
   programs = {
     home-manager = {
       enable = true;
-      path = "../home.nix";
+      path = ~/.nixpkgs/home.nix;
     };
     direnv = {
       enable = true;

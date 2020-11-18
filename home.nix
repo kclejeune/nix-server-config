@@ -24,9 +24,8 @@
       VISUAL = "nvim";
       CLICOLOR = 1;
       LSCOLORS = "ExFxBxDxCxegedabagacad";
-      KAGGLE_CONFIG_DIR = "${config.xdg.configHome}/kaggle";
       JAVA_HOME = "${pkgs.jdk11}";
-      # NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
+      NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
     };
 
     # define package definitions for current user environment
@@ -61,15 +60,6 @@
       httpie
       pandoc
       ripgrep
-      ripgrep-all
-
-      # other useful stuff
-      youtube-dl
-      speedtest-cli
-
-      # typesetting
-      (texlive.combine { inherit (texlive) scheme-basic latexindent latexmk; })
-      tectonic
     ];
   };
 }
