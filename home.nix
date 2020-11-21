@@ -1,4 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  homePrefix = "Users" if pkgs.stdenvNoCC.isDarwin else "home";
+  defaultUser = "kclejeune";
+in
+{
   imports =
     [ ./modules/core.nix ./modules/dotfiles ];
 
@@ -6,8 +11,8 @@
   # paths it should manage.
   home = {
     # only need this if not managed by nix-darwin
-    # username = "kclejeune";
-    # homeDirectory = "/Users/kclejeune";
+    username = "${defaultUser}";
+    homeDirectory = "/${homePrefix}/${defaultUser}";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
