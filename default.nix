@@ -7,7 +7,7 @@ let
 
   rebuild = pkgs.writeShellScriptBin "rebuild" ''
     set -e
-    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
+    export HOME_MANAGER_CONFIG=$(pwd)/home.nix
     ${hm.home-manager}/bin/home-manager switch --show-trace -f $HOME_MANAGER_CONFIG \
       -I nixpkgs=${sources.nixpkgs} \
       -I home-manager=${sources.home-manager} \

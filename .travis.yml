@@ -1,0 +1,14 @@
+language: nix
+os: linux
+dist: focal
+git:
+  clone: false
+before_script: git clone https://github.com/$TRAVIS_REPO_SLUG.git -b server-config ~/.nixpkgs
+cache:
+  directories:
+    - /nix/store
+script: cd ~/.nixpkgs && nix-shell --run "rebuild"
+branches:
+  only:
+    - server-config
+
