@@ -7,8 +7,16 @@ let
 
   rebuild = pkgs.writeShellScriptBin "rebuild" ''
     set -e
-    export HOME_MANAGER_CONFIG=$(pwd)/home.nix
-    ${hm.home-manager}/bin/home-manager switch --show-trace -f $HOME_MANAGER_CONFIG \
+    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
+    ${hm.home-manager}/bin/home-manager switch --show-trace -b backup -f $HOME_MANAGER_CONFIG \
+      -I nixpkgs=${sources.nixpkgs} \
+      -I home-manager=${sources.home-manager} \
+  '';
+
+  test = pkgs.writeShellScriptBin "test" ''
+    set -e
+    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
+    ${hm.home-manager}/bin/home-manager build --show-trace -b backup -f $HOME_MANAGER_CONFIG \
       -I nixpkgs=${sources.nixpkgs} \
       -I home-manager=${sources.home-manager} \
   '';
@@ -18,5 +26,7 @@ in pkgs.mkShell {
     # keep this line if you use bash
     pkgs.bashInteractive
     rebuild
+    test
   ];
 }
+
