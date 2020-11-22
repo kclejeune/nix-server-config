@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let sources = import ../nix/sources.nix;
+in {
   imports = [ ./vim ./zsh ./kitty ];
 
   xdg.enable = true;
@@ -20,6 +22,7 @@
   programs = {
     home-manager = {
       enable = true;
+      path = "${sources.home-manager}";
     };
     direnv = {
       enable = true;

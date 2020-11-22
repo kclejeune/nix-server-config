@@ -20,14 +20,15 @@ in {
     # changes in each release.
     stateVersion = "20.09";
     sessionVariables = {
+      DEFAULT_USER = "${config.home.username}";
+      LANG = "en_US.UTF-8";
       GPG_TTY = "/dev/ttys000";
       EDITOR = "nvim";
       VISUAL = "nvim";
       CLICOLOR = 1;
       LSCOLORS = "ExFxBxDxCxegedabagacad";
       JAVA_HOME = "${pkgs.jdk11}";
-      NIX_PATH =
-        "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:$NIX_PATH";
+      NIX_PATH = "nixpkgs=${sources.nixpkgs}:$NIX_PATH";
     };
 
     # define package definitions for current user environment

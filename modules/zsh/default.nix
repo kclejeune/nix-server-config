@@ -10,7 +10,7 @@ in {
   home.packages = with pkgs; [ fzf exa tree ];
 
   programs.bash = {
-    enable = false;
+    enable = true;
     shellAliases = aliases;
   };
 
@@ -21,9 +21,6 @@ in {
     autocd = true;
     dotDir = ".config/zsh";
     localVariables = {
-      LANG = "en_US.UTF-8";
-      GPG_TTY = "/dev/ttys000";
-      DEFAULT_USER = "${config.home.username}";
       CLICOLOR = 1;
       LS_COLORS = "ExFxBxDxCxegedabagacad";
     };
@@ -42,7 +39,7 @@ in {
     }];
     oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
+      theme = "robbyrussell";
       plugins = [
         "z"
         "git"
