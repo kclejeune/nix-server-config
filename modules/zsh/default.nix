@@ -10,7 +10,7 @@ in {
   home.packages = with pkgs; [ fzf exa tree ];
 
   programs.bash = {
-    enable = true;
+    enable = false;
     shellAliases = aliases;
   };
 
