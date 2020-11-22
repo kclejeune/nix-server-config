@@ -1,10 +1,10 @@
-# MacOS System Configuration with Nix
+# UNIX Dotfile Configuration with Nix
 
-[![Build Status](https://travis-ci.com/kclejeune/dotfiles.svg?branch=master)](https://travis-ci.com/kclejeune/dotfiles)
+[![Build Status](https://travis-ci.com/kclejeune/system.svg?branch=server-config)](https://travis-ci.com/kclejeune/system)
 
 ## Installing Nix Package Manager
 
-Run the following to perform a multi-user installation for darwin or standard linux. This step is skipped on NixOS.
+Run the following to perform a multi-user installation for darwin or standard linux. On macOS, use the additional flag `--darwin-use-unencrypted-nix-store-volume`.
 
 ```bash
 sh <(curl -L https://nixos.org/nix/install) --daemon
