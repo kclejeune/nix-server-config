@@ -1,6 +1,6 @@
 # MacOS System Configuration with Nix
 
-[![Build Status](https://travis-ci.com/kclejeune/dotfiles.svg?branch=master)](https://travis-ci.com/kclejeune/dotfiles)
+[![Build Status](https://travis-ci.com/kclejeune/system.svg?branch=server-config)](https://travis-ci.com/kclejeune/system)
 
 ## Installing Nix Package Manager
 
