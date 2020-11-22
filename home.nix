@@ -1,18 +1,12 @@
-{ config, pkgs, ... }:
-let
-  homePrefix = "Users" if pkgs.stdenvNoCC.isDarwin else "home";
-  defaultUser = "kclejeune";
-in
-{
-  imports =
-    [ ./modules/core.nix ./modules/dotfiles ];
+{ config, sources ? import ./nix/sources.nix, ... }: {
+  imports = [ ./modules/core.nix ./modules/dotfiles ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
     # only need this if not managed by nix-darwin
-    username = "${defaultUser}";
-    homeDirectory = "/${homePrefix}/${defaultUser}";
+    username = builtins.getEnv "USER";
+    homeDirectory = builtins.getEnv "HOME";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -30,7 +24,7 @@ in
       CLICOLOR = 1;
       LSCOLORS = "ExFxBxDxCxegedabagacad";
       JAVA_HOME = "${pkgs.jdk11}";
-      NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
+      NIX_PATH = "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:$NIX_PATH";
     };
 
     # define package definitions for current user environment
