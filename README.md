@@ -7,11 +7,7 @@
 Run the following to perform a multi-user installation for darwin or standard linux. This step is skipped on NixOS.
 
 ```bash
-if [[ $(uname -s) == 'Darwin' ]]; then
-    sh <(curl https://nixos.org/nix/install) --daemon --darwin-use-unencrypted-nix-store-volume
-else
-    sh <(curl https://nixos.org/nix/install) --daemon
-fi
+sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
 ## Cloning Dotfiles
@@ -19,10 +15,16 @@ fi
 Clone this repository into `~/.nixpkgs` with
 
 ```
-git clone https://github.com/kclejeune/system ~/.nixpkgs
+git clone https://github.com/kclejeune/system -b server-config ~/.nixpkgs
 ```
 
-Install nix-darwin and home-manager. Then, run `darwin-rebuild switch`.
+Use
+
+```bash
+nix-shell --run "rebuild"
+```
+
+to bootstrap home-manager on the system and install the first generation.
 
 ## Installing Homebrew dependencies
 

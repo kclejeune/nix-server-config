@@ -1,4 +1,6 @@
-{ config, sources ? import ./nix/sources.nix, ... }: {
+{ config, pkgs, ... }:
+let sources = import ./nix/sources.nix;
+in {
   imports = [ ./modules/core.nix ./modules/dotfiles ];
 
   # Home Manager needs a bit of information about you and the
@@ -24,7 +26,8 @@
       CLICOLOR = 1;
       LSCOLORS = "ExFxBxDxCxegedabagacad";
       JAVA_HOME = "${pkgs.jdk11}";
-      NIX_PATH = "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:$NIX_PATH";
+      NIX_PATH =
+        "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:$NIX_PATH";
     };
 
     # define package definitions for current user environment
