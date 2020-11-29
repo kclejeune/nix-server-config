@@ -1,6 +1,6 @@
 # UNIX Dotfile Configuration with Nix
 
-[![Build Status](https://travis-ci.com/kclejeune/system.svg?branch=server-config)](https://travis-ci.com/kclejeune/system)
+![home-manager build](https://github.com/kclejeune/system/workflows/home-manager%20build/badge.svg?branch=server-config)
 
 ## Installing Nix Package Manager
 
