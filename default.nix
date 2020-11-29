@@ -15,7 +15,7 @@ let
 
   test = pkgs.writeShellScriptBin "test" ''
     set -e
-    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
+    export HOME_MANAGER_CONFIG=$PWD/home.nix
     ${hm.home-manager}/bin/home-manager build --show-trace -b backup -f $HOME_MANAGER_CONFIG \
       -I nixpkgs=${sources.nixpkgs} \
       -I home-manager=${sources.home-manager} \
