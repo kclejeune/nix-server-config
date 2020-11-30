@@ -7,8 +7,8 @@ in {
   # paths it should manage.
   home = {
     # only need this if not managed by nix-darwin
-    username = builtins.getEnv "USER";
-    homeDirectory = builtins.getEnv "HOME";
+    # username = builtins.getEnv "USER";
+    # homeDirectory = builtins.getEnv "HOME";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage

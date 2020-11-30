@@ -1,24 +1,20 @@
-{ sources ? import ./nix/sources.nix }:
+{ pkgs ? import <nixpkgs> { } }:
 let
-  pkgs = import sources.nixpkgs { };
-  hm = import sources.home-manager { };
   isDarwin = pkgs.stdenvNoCC.isDarwin;
   configuration = "$HOME/.nixpkgs/home.nix";
 
-  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+  homeManagerBuild = ''
     set -e
-    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
-    ${hm.home-manager}/bin/home-manager switch --show-trace -b backup -f $HOME_MANAGER_CONFIG \
-      -I nixpkgs=${sources.nixpkgs} \
-      -I home-manager=${sources.home-manager} \
+    ${pkgs.nixFlakes}/bin/nix --experimental-features 'flakes nix-command' build .#homeManagerConfigurations.darwin.activationPackage
   '';
 
-  test = pkgs.writeShellScriptBin "test" ''
-    set -e
-    export HOME_MANAGER_CONFIG=$HOME/.nixpkgs/home.nix
-    ${hm.home-manager}/bin/home-manager build --show-trace -b backup -f $HOME_MANAGER_CONFIG \
-      -I nixpkgs=${sources.nixpkgs} \
-      -I home-manager=${sources.home-manager} \
+  build = pkgs.writeShellScriptBin "build" ''
+    ${homeManagerBuild}
+  '';
+
+  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+    ${homeManagerBuild}
+    ./result/activate
   '';
 
 in pkgs.mkShell {
@@ -26,7 +22,7 @@ in pkgs.mkShell {
     # keep this line if you use bash
     pkgs.bashInteractive
     rebuild
-    test
+    build
   ];
 }
 
