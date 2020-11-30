@@ -16,5 +16,5 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - run: |
-          git clone https://github.com/$GITHUB_REPOSITORY -b server-config ~/.nixpkgs
+          git clone https://github.com/$GITHUB_REPOSITORY ~/.nixpkgs
           cd ~/.nixpkgs && nix-shell --run "rebuild"
