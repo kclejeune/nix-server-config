@@ -1,6 +1,6 @@
 # UNIX Dotfile Configuration with Nix
 
-![home-manager build](https://github.com/kclejeune/system/workflows/home-manager%20build/badge.svg?branch=server-config)
+![home-manager build](https://github.com/kclejeune/nix-server-config/workflows/home-manager%20build/badge.svg?branch=master)
 
 ## Installing Nix Package Manager
 
@@ -15,7 +15,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 Clone this repository into `~/.nixpkgs` with
 
 ```
-git clone https://github.com/kclejeune/system -b server-config ~/.nixpkgs
+git clone https://github.com/kclejeune/nix-server-config ~/.nixpkgs
 ```
 
 Use
